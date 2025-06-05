@@ -5,7 +5,7 @@ const path = require('path');
 exports.getGaleria = async (req, res) => {
   try {
     const galeria = await Oferta.find();
-    res.render('pages/galeri', { galeria });
+    res.render('pages/galeri', { galeria, homeInfo: res.locals.homeInfo });
   } catch (error) {
     console.error(error);
     res.status(500).send('Error al obtener las ofertas');

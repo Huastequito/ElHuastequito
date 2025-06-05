@@ -8,9 +8,9 @@ const homeSliderController = require('../controllers/homeSliderController');
 
 // Página de clientes
 router.get('/', homeInfoPublic.getHomeInfoPublic, homeSliderController.getHomeSlider, (req, res) => res.render('pages/index'));
-router.get('/services', serviceController.getServices);
-router.get('/contact', contactController.getContact);
-router.get('/galeria', galeriaController.getGaleria);
+router.get('/services', homeInfoPublic.getHomeInfoPublic, serviceController.getServices);
+router.get('/contact', homeInfoPublic.getHomeInfoPublic, contactController.getContact);
+router.get('/galeria', homeInfoPublic.getHomeInfoPublic, galeriaController.getGaleria);
 
 module.exports = router;
 

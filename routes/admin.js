@@ -39,6 +39,9 @@ router.post('/galeria/update/:id', upload.single('imageFile'), galeriaController
 router.post('/contact/update/:id', upload.single('iconFile'), contactController.updateContact);
 // Ruta para mostrar y editar información de inicio
 router.get('/homeinfo', homeInfoController.getHomeInfo);
-router.post('/homeinfo', homeInfoController.updateHomeInfo);
+router.post('/homeinfo', upload.fields([
+  { name: 'logoFile', maxCount: 1 },
+  { name: 'iconFile', maxCount: 1 }
+]), homeInfoController.updateHomeInfo);
 
 module.exports = router;

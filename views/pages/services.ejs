@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tienda - Moda Hombre D'Angelo</title>
+  <title>Tienda - <%= homeInfo && homeInfo.nombreLocal ? homeInfo.nombreLocal : "Moda Hombre D'Angelo" %></title>
   <link rel="stylesheet" href="/css/styles.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <link rel="icon" href="/img/LogoOfic.png" type="image/png">
+  <link rel="icon" href="<%= homeInfo && homeInfo.iconUrl ? homeInfo.iconUrl : '/img/LogoOfic.png' %>" type="image/png">
   <style>
     .tienda-section {
       max-width: 1100px;
@@ -33,6 +33,38 @@
       margin-bottom: 16px;
       background: #f3f3f3;
     }
+    /* Estilos para el modal de imagen */
+    .img-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .img-modal.active {
+      display: flex;
+    }
+    .img-modal img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 8px;
+    }
+    .img-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 32px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -42,7 +74,7 @@
     <div class="tienda-grid">
       <% services.forEach(service => { %>
         <div class="card-producto">
-          <img src="<%= service.image %>" alt="<%= service.title %>">
+          <img src="<%= service.image %>" alt="<%= service.title %>" class="producto-img card-img-modal" onclick="openImgModal(this)">
           <div class="nombre"><%= service.title %></div>
           <div class="precio">$<%= service.price %></div>
           <div class="descripcion"><%= service.description %></div>
@@ -53,6 +85,25 @@
       <% }); %>
     </div>
   </section>
+  <!-- Modal para imagen -->
+  <div class="img-modal" id="imgModal" onclick="closeImgModal(event)">
+    <button class="img-modal-close" onclick="closeImgModal(event)">&times;</button>
+    <img id="imgModalImg" src="" alt="Imagen ampliada">
+  </div>
+  <script>
+  function openImgModal(img) {
+    var modal = document.getElementById('imgModal');
+    var modalImg = document.getElementById('imgModalImg');
+    modalImg.src = img.src;
+    modal.classList.add('active');
+  }
+  function closeImgModal(e) {
+    if (e.target.classList.contains('img-modal') || e.target.classList.contains('img-modal-close')) {
+      document.getElementById('imgModal').classList.remove('active');
+      document.getElementById('imgModalImg').src = '';
+    }
+  }
+  </script>
   <!--
   <div class="sidebar-social">
     <a href="#"><i class="fab fa-facebook-f"></i></a>

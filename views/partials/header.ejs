@@ -2,8 +2,8 @@
     <nav class="navbar" style="background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.04);padding:0;">
         <div class="logo">
             <a href="/" style="font-size:22px;font-weight:900;color:#222;letter-spacing:1px;text-decoration:none;display:flex;align-items:center;gap:8px;">
-                <img src="/img/LogoOfic.png" alt="Logo" style="height:32px;vertical-align:middle;">
-                <%= typeof homeInfo !== 'undefined' && homeInfo && homeInfo.nombreLocal ? homeInfo.nombreLocal : "Moda Hombre D'Angelo" %>
+                <img src="<%= homeInfo && homeInfo.logoUrl ? homeInfo.logoUrl : '/img/LogoOfic.png' %>" alt="Logo" style="height:40px;width:40px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.12);background:#fff;padding:2px;">
+                <%= typeof homeInfo !== 'undefined' && homeInfo && homeInfo.nombreLocal ? homeInfo.nombreLocal : "Tienda" %>
             </a>
         </div>
         <div class="menu-toggle" id="mobile-menu">

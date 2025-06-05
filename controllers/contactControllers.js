@@ -7,7 +7,7 @@ const path = require('path');
 exports.getContact = async (req, res) => {
   try {
     const contact = await Contact.find();
-    res.render('pages/contact', { contact });
+    res.render('pages/contact', { contact, homeInfo: res.locals.homeInfo });
   } catch (error) {
     console.error(error);
     res.status(500).send('Error al obtener los servicios');

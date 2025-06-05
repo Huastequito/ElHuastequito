@@ -5,7 +5,7 @@ const path = require('path');
 exports.getServices = async (req, res) => {
   try {
     const services = await Service.find();
-    res.render('pages/services', { services });
+    res.render('pages/services', { services, homeInfo: res.locals.homeInfo });
   } catch (error) {
     console.error(error);
     res.status(500).send('Error al obtener los servicios');

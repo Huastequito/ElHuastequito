@@ -7,6 +7,8 @@ const homeInfoSchema = new mongoose.Schema({
   telefono: { type: String },
   direccion: { type: String },
   email: { type: String },
+  logoUrl: { type: String }, // URL o ruta del logo
+  iconUrl: { type: String }, // URL o ruta del icono para el favicon
   // Puedes agregar más campos según lo que quieras mostrar en la página de inicio
 }, { timestamps: true });
 
